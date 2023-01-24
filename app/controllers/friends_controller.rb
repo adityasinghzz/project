@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  before_action :set_friend, only: %i[ show edit update destroy ]
+  before_action :set_friend, only: %i[ show edit update destroy ping ]
 
   # GET /friends or /friends.json
   def index
@@ -54,6 +54,13 @@ class FriendsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to friends_url, notice: "Friend was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+  def ping
+    if @friend
+      puts "Hello #{@friend.first_name}"
+    else
+      puts "I'm Busy!"
     end
   end
 
